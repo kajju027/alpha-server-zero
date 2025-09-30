@@ -4,39 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scrolling News Ticker</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       padding: 0;
+      background: #0d0d0d;
+      font-family: 'JetBrains Mono', monospace;
+      color: #fff;
     }
+
+    /* Ticker */
     .ticker {
       width: 100%;
       background: #111;
       color: #fff;
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 20px;
+      font-weight: 600;
       overflow: hidden;
       white-space: nowrap;
       box-sizing: border-box;
-      padding: 8px 0;
+      padding: 10px 0;
+      position: relative;
     }
+
     .ticker span {
       display: inline-block;
       padding-left: 100%;
-      animation: scroll 20s linear infinite;
+      animation: scroll 50s linear infinite; /* Slow speed */
     }
+
     @keyframes scroll {
       from { transform: translateX(0); }
       to { transform: translateX(-100%); }
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #25D366;
+      color: white;
+      font-size: 22px;
+      width: 55px;
+      height: 55px;
+      line-height: 55px;
+      text-align: center;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      animation: moveAround 30s infinite;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .whatsapp-btn:hover {
+      background: #128C7E;
+    }
+
+    @keyframes moveAround {
+      0%   { bottom: 20px; left: 20px; }
+      25%  { bottom: 20px; right: 20px; left: auto; }
+      50%  { top: 50%; right: 20px; bottom: auto; }
+      75%  { top: auto; bottom: 20px; left: 50%; transform: translateX(-50%); }
+      100% { bottom: 20px; left: 20px; top: auto; transform: translateX(0); }
     }
   </style>
 </head>
 <body>
 
+  <!-- News Ticker -->
   <div class="ticker">
-    <span>📢 Follow & Support Our Channel! ⚡ We bring you LIVE links of all sports, cricket, football, IPL, international matches & more — Stay connected, stay updated! 🙌</span>
+    <span>
+      ⚡ Welcome to Our Sports Hub! 🏏⚽ Stay tuned for LIVE Cricket, Football, IPL & International Matches! 🔥 |
+      📢 Follow & Support Our Channel for Daily LIVE Links & Updates 🙌 |
+      📰 Get instant match highlights, breaking sports news & live commentary! 🎙️ |
+      🎥 Watch Cricket, Football, Kabaddi, and more — all in one place! 🌍 |
+      🚀 Fastest LIVE links, 100% Free for our loyal supporters ❤️ |
+      🏆 Coverage of World Cup, IPL, Premier League & International Tournaments 🌟 |
+      💬 Join our WhatsApp Channel for Exclusive Updates 📲 |
+      🙏 Thank you for supporting us — Together we grow stronger 💪 |
+    </span>
   </div>
+
+  <!-- WhatsApp Button -->
+  <a href="https://whatsapp.com/channel/your-link-here" class="whatsapp-btn" target="_blank">💬</a>
 
 </body>
 </html>
