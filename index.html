@@ -1,95 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrolling News Ticker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRICKET NEWS POINT 🚀</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+Devanagari:wght@600&family=Noto+Sans+Bengali:wght@600&display=swap" rel="stylesheet" />
 
   <style>
+    /* Global */
     body {
       margin: 0;
       padding: 0;
-      background: #0d0d0d;
+      background: #0b0b0b;
+      color: #ffffff;
       font-family: 'JetBrains Mono', monospace;
-      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
     }
 
-    /* Ticker */
+    /* Ticker Box */
     .ticker {
       width: 100%;
       background: #111;
-      color: #fff;
-      font-size: 20px;
-      font-weight: 600;
       overflow: hidden;
-      white-space: nowrap;
       box-sizing: border-box;
-      padding: 10px 0;
+      padding: 15px 0 40px 0; /* Increased vertical padding */
       position: relative;
     }
 
-    .ticker span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll 50s linear infinite;
+    /* Ticker Content Container for Vertical Layout */
+    .ticker-content {
+        white-space: nowrap;
+        box-sizing: border-box;
+        overflow: hidden;
+        margin: 0;
+        line-height: 1.2; /* Better spacing for lines */
     }
 
+    /* Common Styling for each language line */
+    .ticker-content > div {
+        display: block; /* Make them stack vertically */
+        padding-bottom: 12px; /* Vertical gap between lines */
+        padding-top: 12px; 
+    }
+
+    /* Scroll Animation Container */
+    .scroll-item {
+      display: inline-block;
+      padding-left: 100%;
+      /* Common Animation Settings */
+      animation: scroll 70s linear infinite;
+    }
+
+    /* English - Colour and Delay */
+    .ticker .en {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 17px;
+      font-weight: 700;
+      color: #00eaff; /* Brighter Blue */
+    }
+    .ticker .en .scroll-item {
+        animation-delay: 0s; /* Start first */
+    }
+
+    /* Hindi - Colour and Delay */
+    .ticker .hi {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffcc00; /* Yellow/Gold */
+    }
+    .ticker .hi .scroll-item {
+        animation-delay: 2s; /* 2s delay */
+    }
+
+    /* Bengali - Colour and Delay */
+    .ticker .bn {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #00ff84; /* Pink */
+    }
+    .ticker .bn .scroll-item {
+        animation-delay: 4s; /* 4s delay */
+    }
+
+    /* Keyframes for scroll */
     @keyframes scroll {
       from { transform: translateX(0); }
       to { transform: translateX(-100%); }
     }
 
-    /* WhatsApp Floating Button */
+    /* WhatsApp Button - Much Larger */
     .whatsapp-btn {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      overflow: hidden;
-      animation: floatBtn 20s infinite;
-      opacity: 0;
+      display: inline-block;
+      margin-top: 40px; /* Increased margin */
+      background: linear-gradient(135deg, #00e676, #00bfa5);
+      color: #fff;
+      text-decoration: none;
+      padding: 20px 45px; /* Significantly Increased padding for BIGGER button */
+      font-weight: 700;
+      border: none;
+      outline: none;
+      border-radius: 10px; /* Nicely rounded */
+      box-shadow: 0 0 20px rgba(0, 255, 180, 0.5); 
+      font-size: 18px; /* Increased font size */
+      letter-spacing: 2px; /* Increased letter spacing */
+      text-transform: uppercase;
+      animation: softFloat 5s ease-in-out infinite, pulseShadow 2s infinite;
+      transition: transform 0.3s ease, box-shadow 0.4s ease;
     }
 
-    .whatsapp-btn img {
-      width: 100%;
-      height: 100%;
-      display: block;
+    .whatsapp-btn:hover {
+      transform: scale(1.1); /* More noticeable hover */
+      box-shadow: 0 0 30px rgba(0, 255, 180, 0.8);
+    }
+    
+    @keyframes pulseShadow {
+        0% { box-shadow: 0 0 20px rgba(0, 255, 180, 0.5); }
+        50% { box-shadow: 0 0 35px rgba(0, 255, 180, 1); }
+        100% { box-shadow: 0 0 20px rgba(0, 255, 180, 0.5); }
     }
 
-    /* Button floating & fade effect */
-    @keyframes floatBtn {
-      0%   { top: 60px; left: 20px; opacity: 1; }
-      40%  { top: 120px; right: 20px; left: auto; opacity: 1; }
-      50%  { opacity: 0; } /* fade out */
-      60%  { opacity: 0; } /* stay hidden */
-      70%  { top: 80px; left: 50%; transform: translateX(-50%); opacity: 0; }
-      80%  { opacity: 1; } /* fade in */
-      100% { top: 60px; left: 20px; opacity: 1; }
+    @keyframes softFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); } /* Increased float */
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .ticker .en { font-size: 15px; }
+      .ticker .hi, .ticker .bn { font-size: 14px; }
+      .ticker-content > div { padding-bottom: 8px; padding-top: 8px; }
+      .whatsapp-btn {
+        margin-top: 30px;
+        padding: 15px 30px;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- News Ticker -->
   <div class="ticker">
-    <span>
-      ⚡ Welcome to Our CRICKET NEWS POINT WEBSITE!!! | 🏏⚽ Stay tuned for LIVE Cricket, Football, IPL & International Matches! 🔥 |
-      📢 Follow & Support Our Channel for Daily LIVE Links & Updates 🙌 |
-      📰 Get instant match highlights, breaking sports news & live commentary! 🎙️ |
-      🎥 Watch Cricket, Football, Kabaddi, and more — all in one place! 🌍 |
-      🚀 Fastest LIVE links, 100% Free for our loyal supporters ❤️ |
-      🏆 Coverage of World Cup, IPL, Premier League & International Tournaments 🌟 |
-      💬 Join our WhatsApp Channel for Exclusive Updates 📲 |
-      🙏 Thank you for supporting us — Together we grow stronger 💪 |
-    </span>
+    <div class="ticker-content">
+        
+      <div class="en">
+        <div class="scroll-item">
+            ⭐ Welcome to CRICKET NEWS POINT! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🏏 Live Sports: Cricket, Football, IPL & Global Matches — Your single destination! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🚀 Get Fastest LIVE streaming links — Absolutely Free for our fans! 💖 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 📰 Daily Match Updates, Scorecards, Highlights, and Expert Analysis! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 💬 Join our WhatsApp Channel for instant alerts & exclusive content 📲 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🌎 Watch Replays, Commentary & all the action anytime, anywhere! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ✅ Trusted by thousands of sports enthusiasts across the world! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🔥 No Ads, Zero Delay — Experience pure sports thrill! ⚽🏆
+        </div>
+      </div>
+
+      <div class="hi">
+        <div class="scroll-item">
+            ✨ क्रिकेट न्यूज़ पॉइंट में आपका हार्दिक स्वागत है! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🥎 लाइव स्पोर्ट्स: क्रिकेट, फुटबॉल, आईपीएल और इंटरनेशनल मैच — सब कुछ एक ही जगह पर! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ⚡ सबसे तेज़ लाइव स्ट्रीमिंग लिंक्स — हमारे सभी समर्थकों के लिए 100% मुफ्त! 🙏 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 📈 हर दिन मैच अपडेट, स्कोरकार्ड, और विशेषज्ञों का सटीक विश्लेषण पाएं! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🔔 तुरंत मैच अलर्ट और एक्सक्लूसिव जानकारी के लिए हमारे व्हाट्सएप चैनल से जुड़ें 📱 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🇮🇳 भारत और दुनिया भर के हजारों खेल प्रेमियों का अटूट भरोसा! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ⏳ बिना किसी रुकावट के — सिर्फ़ और सिर्फ़ खेल का मज़ा! 🥅🏅
+        </div>
+      </div>
+
+      <div class="bn">
+        <div class="scroll-item">
+            🌟 ক্রিকেট নিউজ পয়েন্টে আপনাকে জানাই সুস্বাগতম! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🏏 লাইভ খেলা: ক্রিকেট, ফুটবল, আইপিএল এবং আন্তর্জাতিক ম্যাচ — সমস্ত খবর এক ঠিকানায়! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🏆 দ্রুততম লাইভ স্ট্রিমিং লিংক — আমাদের সকল সমর্থকের জন্য সম্পূর্ণ বিনামূল্যে! 🎁 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 📊 প্রতিদিনের ম্যাচ আপডেট, স্কোরকার্ড, ও সঠিক বিশ্লেষণ পান! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 📢 ইনস্ট্যান্ট ম্যাচ অ্যালার্ট ও এক্সক্লুসিভ কনটেন্টের জন্য হোয়াটসঅ্যাপ চ্যানেলে যোগ দিন 💬 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 🇮🇳 ভারত ও বিশ্বের ক্রীড়াপ্রেমীদের সেরা ভরসা! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 💯 কোনো বিজ্ঞাপন ছাড়া — খেলার আসল উত্তেজনার অভিজ্ঞতা নিন! ⚽🥅
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <!-- WhatsApp Button (image) -->
-  <a href="https://whatsapp.com/channel/0029VaeylYYBPzjVNomWuZ0T" class="whatsapp-btn" target="_blank">
-    <img src="https://files.catbox.moe/epe4d3.jpeg" alt="WhatsApp">
+  <a href="https://whatsapp.com/channel/0029VaeylYYBPzjVNomWuZ0T" 
+     class="whatsapp-btn" target="_blank">
+    FOLLOW TO OUR CHANNEL 🥲
   </a>
 
 </body>
